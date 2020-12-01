@@ -1,0 +1,6 @@
+**/python_modules/
+**/djangoapiold/
+*.pyc
+**/__pycache__
+**/migrations/
+.env
