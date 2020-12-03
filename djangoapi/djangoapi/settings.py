@@ -11,9 +11,8 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os, environ
-
 import django_on_heroku
-django_on_heroku.settings(locals())
+
 
 try:
     root = environ.Path(__file__)
@@ -161,3 +160,4 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+django_on_heroku.settings(locals())
