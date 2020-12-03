@@ -1,0 +1,1 @@
+web: gunicorn djangoapi.wsgi --chdir ./djangoapi --log-file -
