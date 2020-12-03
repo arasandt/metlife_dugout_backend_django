@@ -160,4 +160,5 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
-django_on_heroku.settings(locals())
+
+django_on_heroku.settings(locals(), databases=False)
