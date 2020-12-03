@@ -20,7 +20,7 @@ from django.views.generic import RedirectView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    url(r'^djangoapi/userprofile', include('userprofile.urls')),
-    url(r'^djangoapi/signup', include('userprofile.urls')),
+    url(r'^api/userprofile', include('userprofile.urls')),
+    url(r'^api/signup', include('userprofile.urls')),
     # RedirectView.as_view(url='/birds/%(path)s')
 ]
