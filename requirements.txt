@@ -13,3 +13,4 @@ pymongo==3.11.1
 pytz==2020.4
 six==1.15.0
 sqlparse==0.2.4
+whitenoise==5.2.0
