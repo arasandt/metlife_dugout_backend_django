@@ -25,3 +25,5 @@ db = client.test
 # python manage.py createsuperuser
 # python manage.py startapp src
 # python manage.py sqlmigrate src 0001
+# sudo kill -9 $(sudo lsof -t -i:3000)
+# pip freeze | grep -v "pkg-resources" > requirements.txt
