@@ -161,4 +161,11 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-django_on_heroku.settings(locals(), databases=False)
+django_on_heroku.settings(locals(), 
+    db_colors=False, 
+    databases=False, 
+    test_runner=False, 
+    staticfiles=True, 
+    allowed_hosts=True, 
+    logging=True, 
+    secret_key=False)
