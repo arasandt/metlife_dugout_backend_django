@@ -68,7 +68,7 @@ def get_userprofile(request):
     if request.method == 'GET': return userprofile_get(id)
     elif request.method == 'PUT': return userprofile_put(request, id)
     elif request.method == 'POST': 
-        if request.path == "/djangoapi/signup":
+        if request.path == "/api/signup":
             return userprofile_post(request)
         else: 
             return utils.empty_bad_response()
