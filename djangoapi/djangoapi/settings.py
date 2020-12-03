@@ -12,13 +12,24 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 
 import os, environ
 
-root = environ.Path(__file__)
-env = environ.Env()
-environ.Env.read_env()
+try:
+    root = environ.Path(__file__)
+    env = environ.Env()
+    environ.Env.read_env()
+    print("Reading from .env file")
+except:
+        environ.Env.ENVIRON = dict(
+        PORT=os.environ['PORT'],
+        SECRET_KEY=os.environ['SECRET_KEY'],
+        DB_NAME=os.environ['DB_NAME'],
+        DB_HOST=os.environ['DB_HOST'],
+        DB_USER=os.environ['DB_USER'],
+        DB_PASSWORD=os.environ['DB_PASSWORD'],
+    )
 
 # Override default port for `runserver` command
 from django.core.management.commands.runserver import Command as runserver
-runserver.default_port = env.str('PORT')
+runserver.default_port = env('PORT')
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -28,7 +39,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = env.str('SECRET_KEY')
+SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -94,10 +105,10 @@ DATABASES = {
     'default': {
         'ENGINE': 'djongo',
         "CLIENT": {
-           "name": env.str('DB_NAME'),
-           "host": env.str('DB_HOST'),
-           "username": env.str('DB_USER'),
-           "password": env.str('DB_PASSWORD'),
+           "name": env('DB_NAME'),
+           "host": env('DB_HOST'),
+           "username": env('DB_USER'),
+           "password": env('DB_PASSWORD'),
            "authMechanism": "SCRAM-SHA-1",
         }, 
     }
