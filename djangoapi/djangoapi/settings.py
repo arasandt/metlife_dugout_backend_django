@@ -10,24 +10,13 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
-import os, environ
+import os, sys
+sys.path.append("../")
+from config import env
 import django_on_heroku
 
 
-try:
-    root = environ.Path(__file__)
-    env = environ.Env()
-    environ.Env.read_env()
-    print("Reading from .env file")
-except:
-        environ.Env.ENVIRON = dict(
-        PORT=os.environ['PORT'],
-        SECRET_KEY=os.environ['SECRET_KEY'],
-        DB_NAME=os.environ['DB_NAME'],
-        DB_HOST=os.environ['DB_HOST'],
-        DB_USER=os.environ['DB_USER'],
-        DB_PASSWORD=os.environ['DB_PASSWORD'],
-    )
+
 
 # Override default port for `runserver` command
 from django.core.management.commands.runserver import Command as runserver
