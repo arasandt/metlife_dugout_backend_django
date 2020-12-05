@@ -39,7 +39,7 @@ def userprofile_post(request):
             userprofile_serializer.save() 
             id = userprofile_data['id']
             serializer = UserProfileOutputSerializer(UserProfile.objects.get_user(id), many=True)
-            return utils.good_response(serializer.data) 
+            return utils.good_response(serializer.data, 201) 
     return utils.bad_response(userprofile_serializer.errors)   
 
 def userprofile_put(request, id):
