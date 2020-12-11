@@ -3,14 +3,14 @@ from django.core import serializers
 import json
 from django.http import HttpResponse
 from django.http.response import JsonResponse
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, permission_classes
 from .models import UserProfile
 from .serializers import UserProfileInputSerializer, UserProfileOutputSerializer
 import djangoapi.utils as utils
 from rest_framework.parsers import JSONParser 
 from django.utils.encoding import smart_str
 from django.contrib.auth.hashers import make_password
-
+from rest_framework.permissions import AllowAny
 def userprofile_get(id):
     userprofile = UserProfile.objects.get_user(id)
     serializer = UserProfileOutputSerializer(userprofile, many=True)
@@ -63,6 +63,7 @@ def userprofile_put(request, id):
 
 
 @api_view(['GET', 'PUT', 'POST', 'DELETE'])
+@permission_classes([AllowAny, ])
 def get_userprofile(request):
     id = request.GET.get("id")
     if request.method == 'GET': return userprofile_get(id)
